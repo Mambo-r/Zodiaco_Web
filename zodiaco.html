@@ -1,50 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi pagina de signos zodiacales</title>
-
+    <title>Mi página de signos zodiacales</title>
+    <link rel="stylesheet" href="zodiaco.css">
 </head>
 <body>
-    <h1>Mi página de sigos zodiacales</h1>
-    <ol>
-        <li>
-        Aries
-        </li>
-        <li>
-        Tauro
-        </li>
-        <li>
-         Geminis
-        </li>
-        <li>
-        Cancer
-        </li>
-        <li>
-        Leo
-        </li>
-        <li>
-        Virgo
-        </li>
-        <li>
-        Libra
-        </li>
-        <li>
-        Escorpion
-        </li>
-        <li>
-        Sagitario
-        </li>
-        <li>
-        Capricornio
-        </li>
-        <li>
-        Acuario
-        </li>
-        <li>
-        Piscis
-        </li>
-    </ol>
+    <main class="zodiac-page">
+        <div class="uiverse-title-pattern" aria-label="Patrón de título zodiacal">
+            <div class="bg-glow"></div>
+            <div class="bg-noise"></div>
+            <div class="dust-layer"></div>
+            <div class="doodle-layer">
+                <span class="doodle spark d1"></span>
+                <span class="doodle spark d2"></span>
+                <span class="doodle spark d3"></span>
+                <span class="doodle scratch d4"></span>
+                <span class="doodle dot d5"></span>
+                <span class="doodle dot d6"></span>
+            </div>
+
+            <div class="title-stage">
+                <h1 class="main-title" aria-label="Zodiaco">
+                    <span class="letter" data-char="Z" style="--x: -12px; --y: 10px; --r: -8deg; --d: 0s;">Z</span>
+                    <span class="letter" data-char="O" style="--x: 6px; --y: -12px; --r: 7deg; --d: 0.12s;">O</span>
+                    <span class="letter" data-char="D" style="--x: -8px; --y: 14px; --r: -5deg; --d: 0.24s;">D</span>
+                    <span class="letter" data-char="I" style="--x: 10px; --y: -10px; --r: 5deg; --d: 0.36s;">I</span>
+                    <span class="letter" data-char="A" style="--x: -6px; --y: 12px; --r: -7deg; --d: 0.48s;">A</span>
+                    <span class="letter" data-char="C" style="--x: 8px; --y: -14px; --r: 8deg; --d: 0.6s;">C</span>
+                    <span class="letter" data-char="O" style="--x: -10px; --y: 10px; --r: -6deg; --d: 0.72s;">O</span>
+                </h1>
+
+                <div class="neon-line top-line">
+                    <span class="neon-line-inner"></span>
+                </div>
+
+                <h2 class="sub-title" aria-label="signos">
+                    <span class="letter" data-char="S" style="--x: -10px; --y: 8px; --r: -6deg; --d: 0.8s;">S</span>
+                    <span class="letter" data-char="I" style="--x: 8px; --y: -8px; --r: 7deg; --d: 0.92s;">I</span>
+                    <span class="letter" data-char="G" style="--x: -8px; --y: 12px; --r: -5deg; --d: 1.04s;">G</span>
+                    <span class="letter" data-char="N" style="--x: 10px; --y: -10px; --r: 6deg; --d: 1.16s;">N</span>
+                    <span class="letter" data-char="O" style="--x: -8px; --y: 10px; --r: -7deg; --d: 1.28s;">O</span>
+                    <span class="letter" data-char="S" style="--x: 8px; --y: -12px; --r: 8deg; --d: 1.4s;">S</span>
+                </h2>
+
+                <div class="neon-line bottom-line">
+                    <span class="neon-line-inner"></span>
+                </div>
+
+                <div class="caption">Signos • Sol • Luna</div>
+            </div>
+        </div>
+
+        <section class="zodiac-panel">
+            <h2>Mi página de signos zodiacales</h2>
+            <ol class="signos-list">
+                <li>Aries</li>
+                <li>Tauro</li>
+                <li>Géminis</li>
+                <li>Cáncer</li>
+                <li>Leo</li>
+                <li>Virgo</li>
+                <li>Libra</li>
+                <li>Escorpio</li>
+                <li>Sagitario</li>
+                <li>Capricornio</li>
+                <li>Acuario</li>
+                <li>Piscis</li>
+            </ol>
+        </section>
+    </main>
 </body>
 </html>

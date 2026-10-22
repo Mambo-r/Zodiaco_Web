@@ -1,0 +1,579 @@
+html, body {
+  margin: 0;
+  width: 100%;
+  min-height: 100vh;
+  background: #040814;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* From Uiverse.io by mamyapro123 */ 
+.uiverse-title-pattern {
+  --reset-time: 10s;
+  position: relative;
+  width: 100vw;
+  min-height: 100vh;
+  background: radial-gradient(circle at center, #101b39 0%, #090d1d 42%, #03070e 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  font-family: "Garamond", "Times New Roman", Times, serif;
+  user-select: none;
+  cursor: crosshair;
+  box-sizing: border-box;
+}
+
+.uiverse-title-pattern .bg-glow,
+.uiverse-title-pattern .bg-noise,
+.uiverse-title-pattern .dust-layer,
+.uiverse-title-pattern .doodle-layer,
+.uiverse-title-pattern .doodle,
+.uiverse-title-pattern .title-stage,
+.uiverse-title-pattern .neon-line,
+.uiverse-title-pattern .neon-line-inner,
+.uiverse-title-pattern .main-title,
+.uiverse-title-pattern .sub-title,
+.uiverse-title-pattern .letter,
+.uiverse-title-pattern .caption {
+  box-sizing: border-box;
+}
+
+.uiverse-title-pattern .bg-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 38rem;
+  height: 38rem;
+  background: radial-gradient(
+    circle,
+    rgba(96, 170, 255, 0.22) 0%,
+    rgba(132, 86, 255, 0.12) 32%,
+    transparent 62%
+  );
+  transform: translate(-50%, -50%);
+  animation: glowBreathing 6s ease-in-out infinite alternate;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.uiverse-title-pattern .bg-noise {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(106, 178, 255, 0.12) 1px, transparent 1px),
+    radial-gradient(rgba(126, 95, 255, 0.08) 1px, transparent 1px);
+  background-size:
+    20px 20px,
+    15px 15px;
+  background-position:
+    0 0,
+    7.5px 7.5px;
+  opacity: 0.3;
+  z-index: 2;
+  pointer-events: none;
+  animation: noiseJitter 0.4s infinite;
+}
+
+.uiverse-title-pattern::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, transparent 40%, #000 100%);
+  pointer-events: none;
+  z-index: 20;
+}
+
+.uiverse-title-pattern .dust-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.uiverse-title-pattern .dust-layer::before {
+  content: "";
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: transparent;
+  box-shadow:
+    3rem 4rem 1px rgba(105, 190, 255, 0.7),
+    9rem 16rem 1px rgba(120, 110, 255, 0.5),
+    18rem 7rem 1px rgba(70, 160, 255, 0.9),
+    25rem 14rem 1px rgba(148, 120, 255, 0.5);
+  animation: dustDrift 20s linear infinite;
+}
+
+.uiverse-title-pattern .title-stage {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: scale(0.78);
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.uiverse-title-pattern:hover .title-stage {
+  transform: scale(0.82);
+}
+
+.uiverse-title-pattern .main-title,
+.uiverse-title-pattern .sub-title {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  margin: 0;
+  padding: 0;
+  text-transform: uppercase;
+  color: transparent;
+  line-height: 0.9;
+}
+
+.uiverse-title-pattern .main-title {
+  font-size: clamp(4rem, 10vw, 12rem);
+  letter-spacing: 0.04em;
+  margin-bottom: 0.1em;
+}
+
+.uiverse-title-pattern .sub-title {
+  font-size: clamp(1.3rem, 2.8rem, 3.2rem);
+  letter-spacing: 0.2em;
+  margin-bottom: 0.5em;
+}
+
+.uiverse-title-pattern .main-title .letter:first-child,
+.uiverse-title-pattern .main-title .letter:last-child {
+  font-size: 1.25em;
+}
+
+.uiverse-title-pattern .letter {
+  position: relative;
+  display: inline-block;
+  opacity: 0;
+  filter: blur(12px);
+  transform: translate(var(--x), var(--y)) rotate(var(--r)) scale(1.5);
+  -webkit-text-stroke: 2px #7ec5ff;
+  text-shadow:
+    0 0 5px rgba(120, 200, 255, 0.9),
+    0 0 15px rgba(106, 125, 255, 0.75),
+    0 0 30px rgba(100, 70, 255, 0.45);
+  animation:
+    letterIntro var(--reset-time) cubic-bezier(0.2, 0.8, 0.2, 1) infinite,
+    neonFlicker var(--reset-time) linear infinite;
+  animation-delay: var(--d), 0s;
+}
+
+.uiverse-title-pattern .letter::before,
+.uiverse-title-pattern .letter::after {
+  content: attr(data-char);
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: transparent;
+  pointer-events: none;
+}
+
+.uiverse-title-pattern .letter::before {
+  -webkit-text-stroke: 1px rgba(124, 118, 255, 0.75);
+  transform: translate(2px, -2px) rotate(-1.5deg);
+  z-index: -1;
+  animation: sketchJitter 0.18s infinite alternate;
+}
+
+.uiverse-title-pattern .letter::after {
+  -webkit-text-stroke: 1px rgba(58, 101, 255, 0.5);
+  transform: translate(-2px, 1px) rotate(1.5deg);
+  z-index: -2;
+  animation: sketchJitter2 0.2s infinite alternate;
+}
+
+.uiverse-title-pattern .neon-line {
+  position: relative;
+  width: 0%;
+  height: 2px;
+  background: transparent;
+  margin: 0.5em 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: lineReveal var(--reset-time) cubic-bezier(0.8, 0, 0.2, 1) infinite;
+}
+
+.uiverse-title-pattern .neon-line.top-line {
+  margin-bottom: 0.8em;
+}
+
+.uiverse-title-pattern .neon-line.bottom-line {
+  margin-top: 0.5em;
+}
+
+.uiverse-title-pattern .neon-line-inner {
+  width: 100%;
+  height: 100%;
+  border-top: 1px solid #7bc8ff;
+  border-bottom: 1px solid #876fff;
+  box-shadow:
+    0 0 5px #7bc8ff,
+    0 0 10px #7bc8ff,
+    0 0 20px #6a7bff,
+    inset 0 0 2px #7bc8ff;
+}
+
+.uiverse-title-pattern .neon-line-inner::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border: 1px dashed rgba(98, 160, 255, 0.5);
+  transform: rotate(0.2deg);
+  animation: doodleJitter 0.2s infinite alternate;
+}
+
+.uiverse-title-pattern .caption {
+  font-family: sans-serif;
+  font-size: 0.6rem;
+  color: #a7d4ff;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  margin-top: 2em;
+  opacity: 0;
+  text-shadow: 0 0 5px #7a8cff;
+  animation: captionFade var(--reset-time) infinite;
+}
+
+.uiverse-title-pattern .doodle-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.uiverse-title-pattern .doodle {
+  position: absolute;
+  opacity: 0;
+  animation: doodleFadeBlink 5s infinite;
+}
+
+.uiverse-title-pattern .doodle.spark {
+  width: 12px;
+  height: 12px;
+}
+
+.uiverse-title-pattern .doodle.spark::before,
+.uiverse-title-pattern .doodle.spark::after {
+  content: "";
+  position: absolute;
+  background: #7bc8ff;
+  box-shadow: 0 0 8px #7bc8ff;
+  border-radius: 50%;
+}
+
+.uiverse-title-pattern .doodle.spark::before {
+  width: 100%;
+  height: 2px;
+  top: 5px;
+  left: 0;
+}
+
+.uiverse-title-pattern .doodle.spark::after {
+  width: 2px;
+  height: 100%;
+  top: 0;
+  left: 5px;
+}
+
+.uiverse-title-pattern .doodle.scratch {
+  width: 20px;
+  height: 2px;
+  background: transparent;
+  border-top: 2px solid #7bc8ff;
+  border-bottom: 1px solid #786cff;
+  transform: rotate(-35deg);
+  box-shadow: 0 0 5px #7bc8ff;
+}
+
+.uiverse-title-pattern .doodle.dot {
+  width: 4px;
+  height: 4px;
+  background: #7bc8ff;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #7bc8ff;
+}
+
+.uiverse-title-pattern .d1 {
+  animation-delay: 3s;
+}
+
+.uiverse-title-pattern .d2 {
+  animation-delay: 4.2s;
+}
+
+.uiverse-title-pattern .d3 {
+  animation-delay: 3.5s;
+}
+
+.uiverse-title-pattern .d4 {
+  animation-delay: 4.8s;
+}
+
+.uiverse-title-pattern .d5 {
+  animation-delay: 3.9s;
+}
+
+.uiverse-title-pattern .d6 {
+  animation-delay: 5.1s;
+}
+
+.uiverse-title-pattern:hover .doodle {
+  animation-duration: 2s;
+  box-shadow:
+    0 0 15px #fff,
+    0 0 30px #8d7dff;
+}
+
+.uiverse-title-pattern:hover .main-title .letter {
+  text-shadow:
+    0 0 10px rgba(140, 210, 255, 0.9),
+    0 0 20px rgba(118, 104, 255, 0.8),
+    0 0 40px rgba(96, 75, 255, 0.6);
+}
+
+@keyframes letterIntro {
+  0% {
+    opacity: 0;
+    filter: blur(12px);
+    transform: translate(var(--x), var(--y)) rotate(var(--r)) scale(1.5);
+  }
+
+  30%,
+  68% {
+    opacity: 1;
+    filter: blur(0);
+    transform: translate(0, 0) rotate(0deg) scale(1);
+  }
+
+  92%,
+  100% {
+    opacity: 0;
+    filter: blur(12px);
+    transform: translate(var(--x), var(--y)) rotate(var(--r)) scale(1.5);
+  }
+}
+
+@keyframes lineReveal {
+  0%,
+  16% {
+    width: 0%;
+    opacity: 0;
+  }
+
+  36%,
+  68% {
+    width: 110%;
+    opacity: 1;
+  }
+
+  84%,
+  100% {
+    width: 0%;
+    opacity: 0;
+  }
+}
+
+@keyframes captionFade {
+  0%,
+  36% {
+    opacity: 0;
+  }
+
+  48%,
+  68% {
+    opacity: 0.5;
+  }
+
+  84%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes glowBreathing {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.7;
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(1.1);
+    opacity: 1;
+  }
+}
+
+@keyframes neonFlicker {
+  0%,
+  30%,
+  62%,
+  100% {
+    opacity: 1;
+  }
+
+  20%,
+  64% {
+    opacity: 0.35;
+  }
+
+  92%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes doodleJitter {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+
+  50% {
+    transform: translate(1px, -1px) rotate(0.3deg);
+  }
+
+  100% {
+    transform: translate(-1px, 1px) rotate(-0.3deg);
+  }
+}
+
+@keyframes sketchJitter {
+  0% {
+    transform: translate(2px, -2px) rotate(-1.5deg);
+  }
+
+  100% {
+    transform: translate(3px, -1px) rotate(-1deg);
+  }
+}
+
+@keyframes sketchJitter2 {
+  0% {
+    transform: translate(-2px, 1px) rotate(1.5deg);
+  }
+
+  100% {
+    transform: translate(-3px, 2px) rotate(1deg);
+  }
+}
+
+@keyframes noiseJitter {
+  0% {
+    background-position:
+      0 0,
+      7.5px 7.5px;
+  }
+
+  50% {
+    background-position:
+      2px -2px,
+      5.5px 9.5px;
+  }
+
+  100% {
+    background-position:
+      -2px 2px,
+      9.5px 5.5px;
+  }
+}
+
+@keyframes dustDrift {
+  0% {
+    transform: translateY(0) translateX(0);
+  }
+
+  100% {
+    transform: translateY(-12rem) translateX(5rem);
+  }
+}
+
+@keyframes doodleFadeBlink {
+  0%,
+  10%,
+  100% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+
+  5% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+@media (max-width: 600px) {
+  .uiverse-title-pattern {
+    min-height: 18rem;
+  }
+
+  .uiverse-title-pattern .title-stage {
+    transform: scale(0.58);
+  }
+
+  .uiverse-title-pattern:hover .title-stage {
+    transform: scale(0.62);
+  }
+
+  .uiverse-title-pattern .dust-layer::before {
+    display: none;
+  }
+}
+/* FULL HEIGHT FIT INSIDE CARD - NO vw / vh UNITS */
+.card-content,
+.clickable-wrapper,
+.card__button-container,
+.preview-container,
+#container {
+  width: 100%;
+  height: 100%;
+  min-height: 250px;
+  overflow: hidden;
+  position: relative;
+}
+
+#container .uiverse-title-pattern {
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  max-height: none;
+  overflow: hidden;
+}
+
+/* Fit the title inside full height */
+#container .uiverse-title-pattern .title-stage {
+  transform: scale(0.58);
+  transform-origin: center;
+}
+
+#container .uiverse-title-pattern:hover .title-stage {
+  transform: scale(0.62);
+}
+
+/* Glow fit without vw/vh */
+#container .uiverse-title-pattern .bg-glow {
+  width: 28rem;
+  height: 28rem;
+}
+
+/* No vw allowed, so use rem only */
+#container .uiverse-title-pattern .main-title {
+  font-size: clamp(2rem, 4.8rem, 5.8rem);
+}
+
+#container .uiverse-title-pattern .sub-title {
+  font-size: clamp(1rem, 2.4rem, 2.8rem);
+}
+
+/* Keep caption inside */
+#container .uiverse-title-pattern .caption {
+  margin-top: 1.2em;
+}

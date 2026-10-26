@@ -671,6 +671,123 @@ body {
   box-shadow: inset 0 0 18px rgba(124, 167, 255, 0.12), 0 0 18px rgba(61, 120, 255, 0.25);
 }
 
+.signos-list img {
+  cursor: pointer;
+}
+
+.signo-modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(3, 7, 19, 0.7);
+  backdrop-filter: blur(8px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.35s ease, visibility 0.35s ease;
+  z-index: 1000;
+}
+
+.signo-modal.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.signo-modal__content {
+  position: relative;
+  width: min(90vw, 540px);
+  background: linear-gradient(135deg, rgba(12, 20, 38, 0.96), rgba(16, 32, 56, 0.92));
+  border: 1px solid rgba(128, 177, 255, 0.52);
+  border-radius: 22px;
+  box-shadow: 0 30px 60px rgba(4, 8, 20, 0.7), 0 0 28px rgba(98, 153, 255, 0.25);
+  transform: translateY(20px) scale(0.96);
+  opacity: 0;
+  transition: transform 0.35s ease, opacity 0.35s ease;
+  overflow: hidden;
+}
+
+.signo-modal.active .signo-modal__content {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+.signo-modal__close {
+  position: absolute;
+  top: 0.9rem;
+  right: 0.9rem;
+  width: 2.1rem;
+  height: 2.1rem;
+  border: none;
+  border-radius: 50%;
+  background: rgba(126, 171, 255, 0.18);
+  color: #edf6ff;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.signo-modal__close:hover {
+  background: rgba(126, 171, 255, 0.32);
+  transform: rotate(90deg);
+}
+
+.signo-modal__body {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 1rem;
+  padding: 1.2rem;
+}
+
+.signo-modal__image {
+  width: 100%;
+  height: 140px;
+  object-fit: contain;
+  border-radius: 14px;
+  background: rgba(8, 14, 26, 0.65);
+  border: 1px solid rgba(138, 182, 255, 0.3);
+  padding: 0.5rem;
+  box-shadow: inset 0 0 18px rgba(140, 181, 255, 0.1);
+}
+
+.signo-modal__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.signo-modal__title {
+  margin: 0 0 0.55rem;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #dfeeff;
+  text-shadow: 0 0 10px rgba(124, 180, 255, 0.4);
+}
+
+.signo-modal__text {
+  margin: 0;
+  color: #e8f1ff;
+  line-height: 1.7;
+  font-size: 0.96rem;
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+@media (max-width: 520px) {
+  .signo-modal__body {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .signo-modal__image {
+    max-width: 140px;
+    margin: 0 auto;
+  }
+}
+
 @keyframes cardFloat {
   0% {
     transform: translateY(0);

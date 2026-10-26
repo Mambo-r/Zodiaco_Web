@@ -107,5 +107,74 @@
             </ol>
         </section>
     </main>
+
+    <div class="signo-modal" id="signo-modal" aria-hidden="true">
+        <div class="signo-modal__content" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+            <button class="signo-modal__close" type="button" aria-label="Cerrar información">×</button>
+            <div class="signo-modal__body">
+                <img class="signo-modal__image" id="modal-image" src="" alt="">
+                <div class="signo-modal__info">
+                    <h3 class="signo-modal__title" id="modal-title">Signo</h3>
+                    <p class="signo-modal__text" id="modal-text">Información del signo.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const modal = document.getElementById('signo-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalText = document.getElementById('modal-text');
+        const modalImage = document.getElementById('modal-image');
+        const closeButton = document.querySelector('.signo-modal__close');
+
+        document.querySelectorAll('.signos-list img').forEach((img) => {
+            img.addEventListener('click', () => {
+                const li = img.closest('li');
+                const signName = li ? li.firstChild.textContent.trim() : 'Signo';
+                const description = img.getAttribute('alt') || 'Información del signo zodiacal.';
+
+                modalTitle.textContent = signName;
+                modalText.textContent = description;
+                modalImage.src = img.src;
+                modalImage.alt = signName;
+
+                modal.classList.add('active');
+                modal.setAttribute('aria-hidden', 'false');
+                document.body.classList.add('modal-open');
+            });
+
+            img.setAttribute('tabindex', '0');
+            img.setAttribute('role', 'button');
+            img.setAttribute('aria-label', 'Ver información del signo');
+
+            img.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    img.click();
+                }
+            });
+        });
+
+        const closeModal = () => {
+            modal.classList.remove('active');
+            modal.setAttribute('aria-hidden', 'true');
+            document.body.classList.remove('modal-open');
+        };
+
+        closeButton.addEventListener('click', closeModal);
+
+        modal.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && modal.classList.contains('active')) {
+                closeModal();
+            }
+        });
+    </script>
 </body>
 </html>

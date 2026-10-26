@@ -2,7 +2,10 @@ html, body {
   margin: 0;
   width: 100%;
   min-height: 100vh;
-  background: #040814;
+  background:
+    radial-gradient(circle at top, rgba(90, 123, 255, 0.28), transparent 30%),
+    radial-gradient(circle at bottom right, rgba(56, 204, 255, 0.2), transparent 27%),
+    #040814;
 }
 
 body {
@@ -17,7 +20,9 @@ body {
   position: relative;
   width: 100vw;
   min-height: 100vh;
-  background: radial-gradient(circle at center, #101b39 0%, #090d1d 42%, #03070e 100%);
+  background:
+    radial-gradient(circle at center, rgba(87, 108, 199, 0.45) 0%, rgba(18, 31, 63, 0.94) 28%, rgba(4, 7, 17, 0.98) 100%),
+    linear-gradient(135deg, #091426 0%, #0b1530 35%, #040914 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -26,6 +31,7 @@ body {
   user-select: none;
   cursor: crosshair;
   box-sizing: border-box;
+  box-shadow: inset 0 0 50px rgba(113, 140, 255, 0.2);
 }
 
 .uiverse-title-pattern .bg-glow,
@@ -116,6 +122,7 @@ body {
   align-items: center;
   transform: scale(0.78);
   transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+  filter: drop-shadow(0 0 18px rgba(120, 141, 255, 0.3));
 }
 
 .uiverse-title-pattern:hover .title-stage {
@@ -159,9 +166,10 @@ body {
   transform: translate(var(--x), var(--y)) rotate(var(--r)) scale(1.5);
   -webkit-text-stroke: 2px #7ec5ff;
   text-shadow:
-    0 0 5px rgba(120, 200, 255, 0.9),
-    0 0 15px rgba(106, 125, 255, 0.75),
-    0 0 30px rgba(100, 70, 255, 0.45);
+    0 0 8px rgba(120, 200, 255, 1),
+    0 0 18px rgba(106, 125, 255, 0.95),
+    0 0 30px rgba(174, 108, 255, 0.8),
+    0 0 55px rgba(85, 133, 255, 0.65);
   animation:
     letterIntro var(--reset-time) cubic-bezier(0.2, 0.8, 0.2, 1) infinite,
     neonFlicker var(--reset-time) linear infinite;
@@ -560,7 +568,8 @@ body {
 
 body {
   display: block;
-  font-family: Arial, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #edf6ff;
 }
 
 .zodiac-page {
@@ -578,10 +587,12 @@ body {
   max-width: 960px;
   margin: -2rem auto 3rem;
   padding: 2rem 2.5rem 2.5rem;
-  border: 1px solid rgba(127, 170, 255, 0.28);
+  border: 1px solid rgba(127, 170, 255, 0.45);
   border-radius: 24px;
-  background: rgba(8, 12, 24, 0.72);
-  box-shadow: 0 20px 50px rgba(20, 30, 60, 0.45);
+  background:
+    linear-gradient(135deg, rgba(10, 17, 31, 0.9), rgba(11, 20, 34, 0.78)),
+    radial-gradient(circle at top, rgba(115, 138, 255, 0.18), transparent 40%);
+  box-shadow: 0 20px 50px rgba(20, 30, 60, 0.6), 0 0 26px rgba(101, 137, 255, 0.2);
   backdrop-filter: blur(8px);
 }
 
@@ -592,6 +603,8 @@ body {
   font-size: clamp(1.8rem, 3vw, 2.6rem);
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  font-family: "Georgia", "Times New Roman", serif;
+  text-shadow: 0 0 18px rgba(124, 175, 255, 0.4);
 }
 
 .signos-list {
@@ -611,14 +624,18 @@ body {
   gap: 0.8rem;
   min-height: 220px;
   padding: 1rem 1.2rem;
-  background: linear-gradient(135deg, rgba(101, 140, 255, 0.16), rgba(111, 255, 214, 0.11));
-  border: 1px solid rgba(124, 180, 255, 0.4);
+  background: linear-gradient(135deg, rgba(101, 140, 255, 0.22), rgba(111, 255, 214, 0.1), rgba(66, 93, 173, 0.2));
+  border: 1px solid rgba(124, 180, 255, 0.5);
   border-radius: 14px;
   color: #edf6ff;
   text-align: center;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+  font-weight: 700;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-shadow: 0 0 12px rgba(139, 188, 255, 0.25);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06), 0 12px 24px rgba(7, 12, 23, 0.35);
   transition: transform 0.3s ease, box-shadow 0.35s ease, border-color 0.3s ease;
   animation: cardFloat 6s ease-in-out infinite alternate;
 }
@@ -629,8 +646,8 @@ body {
 
 .signos-list li:hover {
   transform: translateY(-6px) scale(1.02);
-  border-color: rgba(144, 204, 255, 0.7);
-  box-shadow: 0 0 22px rgba(120, 167, 255, 0.35), 0 18px 30px rgba(27, 39, 68, 0.45);
+  border-color: rgba(144, 204, 255, 0.8);
+  box-shadow: 0 0 26px rgba(120, 167, 255, 0.42), 0 18px 30px rgba(27, 39, 68, 0.5);
 }
 
 .signos-list img {
@@ -643,15 +660,15 @@ body {
   padding: 0.45rem;
   border-radius: 12px;
   background: rgba(11, 17, 31, 0.46);
-  border: 1px solid rgba(149, 182, 255, 0.22);
-  box-shadow: inset 0 0 18px rgba(124, 167, 255, 0.18);
+  border: 1px solid rgba(149, 182, 255, 0.3);
+  box-shadow: inset 0 0 18px rgba(124, 167, 255, 0.2), 0 0 18px rgba(90, 142, 255, 0.15);
   transition: transform 0.35s ease, filter 0.35s ease, box-shadow 0.35s ease;
 }
 
 .signos-list li:hover img {
-  transform: scale(1.06) rotate(-1deg);
-  filter: drop-shadow(0 0 12px rgba(121, 208, 255, 0.45));
-  box-shadow: inset 0 0 18px rgba(124, 167, 255, 0.12), 0 0 18px rgba(61, 120, 255, 0.18);
+  transform: scale(1.08) rotate(-1deg);
+  filter: drop-shadow(0 0 12px rgba(121, 208, 255, 0.55)) saturate(1.15);
+  box-shadow: inset 0 0 18px rgba(124, 167, 255, 0.12), 0 0 18px rgba(61, 120, 255, 0.25);
 }
 
 @keyframes cardFloat {
